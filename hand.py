@@ -81,9 +81,9 @@ while True:
                         msg = '2'
 
                     # Мизинец
-                    # if finger[4]:
-                    #     msg = '3'
-                    #
+                    if finger[4]:
+                        msg = '4'
+
                     # if finger[4]:
                     #     print('4')
 
