@@ -54,40 +54,46 @@ while True:
                 # заполняем массив 1 (палец поднят) или 0 (палец сжат)
                 finger[1] = 1 if distance(p[0], p[8]) > distanceGood / 3 else 0
                 finger[2] = 1 if distance(p[0], p[12]) > distanceGood / 3 else 0
-                # finger[3] = 1 if distance(p[0], p[16]) > distanceGood else 0
-                # finger[4] = 1 if distance(p[0], p[20]) > distanceGood else 0
-                # finger[0] = 1 if distance(p[4], p[17]) > distanceGood else 0
+                finger[3] = 1 if distance(p[0], p[16]) > distanceGood / 3 else 0
+                finger[4] = 1 if distance(p[0], p[20]) > distanceGood / 3 else 0
+                finger[0] = 1 if distance(p[4], p[17]) > distanceGood / 3 else 0
 
                 msg = '0'
                 # 0 - большой палец, 1 - указательный, 2 - средний, 3 - безымянный, 4 - мизинец
                 # жест "коза" - 01001
 
-                if finger[1]:
-                    msg = '1'
-                    # print('Green High')
+                # Указательный
+
+                if not finger[1] and not finger[2] and not finger[3] and not finger[4] and not finger[0]:
+                     msg = '0'
+                else:
+
+                        # print('Green High')
+                        # msg = bytes(str(msg), 'utf-8')
+                        # uart.write(msg)
+
+                    # Указательный
+                    if finger[1]:
+                        msg = '1'
+
+                    # Средний палец
+                    if finger[2]:
+                        msg = '2'
+
+                    # Мизинец
+                    # if finger[4]:
+                    #     msg = '3'
+                    #
+                    # if finger[4]:
+                    #     print('4')
+
+                    # Большой
+                    if finger[0]:
+                        msg = '3'
+                    # if finger[1] and finger[0]:
+                    #     msg = '3'
                     # msg = bytes(str(msg), 'utf-8')
                     # uart.write(msg)
-
-                if not finger[1] and not finger[2] or not finger[1]:
-                    msg = '0'
-                    # msg = bytes(str(msg), 'utf-8')
-                    # uart.write(msg)
-
-
-
-                # if finger[2]:
-                #     msg = 2
-                #     print('Red High')
-                #    # msg = bytes(str(msg), 'utf-8')
-                #     uart.write(msg)
-
-
-                # if finger[0] and not (finger[1]) and not (finger[2]) and not (finger[3]) and not (finger[4]):
-                #     msg = '^'
-                # if not (finger[0]) and finger[1] and finger[2] and not (finger[3]) and not (finger[4]):
-                #     msg = '$' + str(width) + ';'
-                # if not (finger[0]) and finger[1] and not (finger[2]) and not (finger[3]) and not (finger[4]):
-                #     msg = '#' + str(width) + ';'
 
                 # if msg != '':
                 msg = bytes(str(msg), 'utf-8')
